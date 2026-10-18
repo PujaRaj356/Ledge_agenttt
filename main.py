@@ -17,6 +17,7 @@ from pydantic import BaseModel, Field
 BUSINESS_TZ = ZoneInfo("Asia/Kolkata")
 DISCOVERY_URL = os.getenv("LEDGER_DISCOVERY_URL", "").strip()
 HTTP_TIMEOUT = float(os.getenv("LEDGER_HTTP_TIMEOUT", "45"))
+APP_BUILD = "ledger-agent-fix-20261018-v2"
 
 DATA: dict[str, Any] = {
     "ready": False,
@@ -93,4 +94,3 @@ async def load_ledger(force: bool = False) -> None:
                                 obj = json.loads(raw)
                                 if isinstance(obj, list):
                                     rows = [x for x in obj if isinstance(x, dict)]
-                                    break
